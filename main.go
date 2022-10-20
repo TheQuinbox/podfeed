@@ -10,8 +10,8 @@ import (
 )
 
 type Results struct {
-	Results     []struct {
-		FeedURL                string    `json:"feedUrl"`
+	Results []struct {
+		FeedURL string `json:"feedUrl"`
 	} `json:"results"`
 }
 
