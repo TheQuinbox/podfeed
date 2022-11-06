@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"os"
 	"regexp"
@@ -26,17 +27,17 @@ func main() {
 	url := fmt.Sprintf("https://itunes.apple.com/lookup?id=%s&entity=podcast", id)
 	resp, err := http.Get(url)
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 	defer resp.Body.Close()
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 	var response Results
 	err = json.Unmarshal(body, &response)
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 	fmt.Println(response.Results[0].FeedURL)
 }
